@@ -1,0 +1,59 @@
+#resume-header{
+    max-width: 500px;
+    text-align: left;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
+nav{
+    height: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.resume-container{
+    width: 100%;
+    height: calc(100% - 40px);
+}
+
+.header-links{
+    height: 50px;
+    display: flex;
+}
+
+.header-links a{
+    height: 50px;
+    width: 50px;
+}
+
+main{
+    flex-grow: .9;
+    text-align: left;
+}
+
+.section-header{
+    font-size:large;
+    font-weight: bolder;
+    text-align: left;
+}
+
+@media (min-width: 1024px) {
+    .resume-container{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    main{
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+    #root{
+        padding: 0px;
+    }
+}
+
+.list-button{
+    width: 100%;
+    text-align: center;
+}

@@ -1,0 +1,40 @@
+.work-history-card{
+    width: 100%;
+    transition: background-color .5s linear;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.work-history-card:hover{
+    background-color: rgba(255, 255, 255, .1);
+    transition: background-color .5s linear;
+}
+
+.no-bottom{
+    margin-bottom: 0px;
+}
+
+.no-top{
+    margin-top: 0px;
+}
+
+.work-history-dates{
+    width: 100%;
+    height: 25px;
+    text-align: right;
+    border-bottom: 2px solid white;
+}
+
+.work-history-skills{
+    display: flex;
+}
+
+.skill-pill{
+    background-color: rgba(255, 255, 0, .1);
+    border-radius: 10px 10px 10px 10px;
+    padding: 5px;
+    margin: 2px;
+}
