@@ -1,17 +1,32 @@
 import "./Home.css"
 import {WorkHistoryCard} from "../components/WorkHistoryCard";
 import {ProjectCard} from "../components/ProjectCard";
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import {JobsStoreContext, useJobsAPI} from "../services/JobsProvider";
+import {BackendAPIProvider} from "../api/backend.api";
+import { useProfileAPI } from "../services/ProfileProvider";
+
+export interface IServiceState{
+    profile: any;
+    jobs: Array<any>;
+}
 
 export function Home(){
-    let [moreJobs, setMoreJobs] = useState(false);
+    let jobsAPI = useJobsAPI();
+    let profileAPI = useProfileAPI();
+
+    useEffect(() => {
+        jobsAPI.fetchAllJobs();
+        profileAPI.fetchprofile();
+    }, []);
+    
     return (
         <>
         <div className="resume-container">
             <header id="resume-header">
-                <h1>Gabriel Vande Hei</h1>
-                <h2>Software Engineer, Cyber Physical Systems</h2>
-                <p>I design and build all aspects of high performance systems, from whiteboarding, to deployment</p>
+                <h1>{profileAPI.profile?.first_name} {profileAPI.profile?.last_name}</h1>
+                <h2>{profileAPI.profile?.title}</h2>
+                <p>{profileAPI.profile?.about_me_blurb}</p>
                 <div className="header-links">
                     <a href="https://github.com/gfvandehei">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-6 w-6" aria-hidden="true">
@@ -44,23 +59,32 @@ export function Home(){
                 </div>
                 <div className="section-header primary-color">Work History</div>
                 <div className="work-history">
+                    {Object.keys(jobsAPI.jobs).map((key, index) => {
+                        let job = jobsAPI.jobs[key];
+                        console.log(job);
+                        return (<WorkHistoryCard key={index} company={job.workplace.name} text={job.description} work_end={job.end_date} work_start={job.start_date} link={job.workplace.link} title={job.title} skills={[]}/>)
+                    })}
                     <WorkHistoryCard company="MIT Lincoln Laboratories" text="asdasdasdasdasdasd asdasdas asdasdgasa" skills={["Python", "Typescript"]} work_end="Present" work_start="2022" link="" title="Assistant Staff, Cyber Physical Systems"/>
                     <WorkHistoryCard company="MITRE" text="asdasdasdasdasdasd asdasdas asdasdgasa" skills={["Python", "Typescript"]} work_end="2022" work_start="2020" link="" title="Cyber Security Software Engineer"/>
-                    {!moreJobs && <div onClick={() => setMoreJobs(true)} className="list-button">More</div>}
-                    {
+                    {/*!moreJobs && <div onClick={() => setMoreJobs(true)} className="list-button">More</div>*/}
+                    {/*
                         moreJobs && <>
                             <WorkHistoryCard company="MIT Lincoln Laboratories" text="asdasdasdasdasdasd asdasdas asdasdgasa" skills={["Python", "Typescript"]} work_end="2019" work_start="2019" link="" title="Cyber Physical Systems Student Co-op"/>
                             <WorkHistoryCard company="Exago" text="asdasdasdasdasdasd asdasdas asdasdgasa" skills={["Python", "Typescript"]} work_end="2018" work_start="2018" link="" title="Software Engineering Intern, NLP"/>
                             <WorkHistoryCard company="Thinkom" text="asdasdasdasdasdasd asdasdas asdasdgasa" skills={["Python", "Typescript"]} work_end="2017" work_start="2017" link="" title="Student Intern, Test Systems"/>
                             <div className="list-button" onClick={() => setMoreJobs(false)}>Less</div>
                         </> 
-                    }
+                */}
 
                 </div>
                 <div className="section-header primary-color">Projects</div>
                 <div className="Projects">
                     <ProjectCard title="Zenlighting" subtitle="SW/HW project" description="" display_image_url="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRKy5Jcu4WHiIAJ4YrgVvSHyDE8k9zigkoLEDbAwDOhhBfGvqTyPFuvf62ElSA81Kpkz82Rcpcz9BfL65038IrmG8JrFzXIhw" technologies={["python", "c++"]}/>
                 </div>
+                <section id="education">
+                    <div className="section-header primary-color">Education</div>
+                    <>RPI</>
+                </section>
             </main>
 
         </div>
