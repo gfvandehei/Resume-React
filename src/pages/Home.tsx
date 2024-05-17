@@ -64,8 +64,6 @@ export function Home(){
                         console.log(job);
                         return (<WorkHistoryCard key={index} company={job.workplace.name} text={job.description} work_end={job.end_date} work_start={job.start_date} link={job.workplace.link} title={job.title} skills={[]}/>)
                     })}
-                    <WorkHistoryCard company="MIT Lincoln Laboratories" text="asdasdasdasdasdasd asdasdas asdasdgasa" skills={["Python", "Typescript"]} work_end="Present" work_start="2022" link="" title="Assistant Staff, Cyber Physical Systems"/>
-                    <WorkHistoryCard company="MITRE" text="asdasdasdasdasdasd asdasdas asdasdgasa" skills={["Python", "Typescript"]} work_end="2022" work_start="2020" link="" title="Cyber Security Software Engineer"/>
                     {/*!moreJobs && <div onClick={() => setMoreJobs(true)} className="list-button">More</div>*/}
                     {/*
                         moreJobs && <>
