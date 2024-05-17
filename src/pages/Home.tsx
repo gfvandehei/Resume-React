@@ -2,7 +2,7 @@ import "./Home.css"
 import {WorkHistoryCard} from "../components/WorkHistoryCard";
 import {ProjectCard} from "../components/ProjectCard";
 import { useEffect, useState, useContext } from "react";
-import {JobsStoreContext, useJobsAPI} from "../services/JobsProvider";
+import {useJobsAPI} from "../services/JobsProvider";
 import {BackendAPIProvider} from "../api/backend.api";
 import { useProfileAPI } from "../services/ProfileProvider";
 
